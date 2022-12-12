@@ -5,7 +5,7 @@ from aws_cdk import (
 from player_lambda.infrastructure.add_player_event_stack import AddPlayerEventStack
 
 
-class ChangePlayerEventStage(Stage):
+class AddPlayerEventStage(Stage):
 
     def __init__(self, scope: Construct, id: str, **kwargs):
         super().__init__(scope, id, **kwargs)

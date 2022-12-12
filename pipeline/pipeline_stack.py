@@ -8,6 +8,7 @@ from aws_cdk import (
 from player_lambda.infrastructure.change_player_event_stage import ChangePlayerEventStage
 from player_lambda.infrastructure.player_changed_event_stage import PlayerChangedEventStage
 from player_lambda.infrastructure.read_player_stage import ReadPlayerStage
+from player_lambda.infrastructure.add_player_event_stage import AddPlayerEventStage
 from event_bridge.infrastructure.player_event_bridge_stage import PlayerEventBridgeStage
 
 
@@ -46,6 +47,11 @@ class PipelineStack(Stack):
             self, "DeployReadPlayer")
         deploy_read_player_stage = code_pipeline.add_stage(
             deploy_read_player)
+
+        deploy_add_player_event = AddPlayerEventStage(
+            self, "DeployAddPlayerEvent")
+        deploy_add_player_event_stage = code_pipeline.add_stage(
+            deploy_add_player_event)
 
         deploy_player_event_bridge = PlayerEventBridgeStage(
             self, "DeployPlayerEventBridge")
