@@ -3,7 +3,8 @@ from aws_cdk import (
     aws_iam as iam,
     aws_lambda as _lambda,
     aws_lambda_python_alpha as python,
-    aws_s3 as s3
+    aws_s3 as s3,
+    aws_dynamodb as dynamodb
 )
 from constructs import Construct
 
@@ -34,6 +35,13 @@ class ChangePlayerEventStack(Stack):
             "event-driven-exploration-player-bucket-1029",
             "event-driven-exploration-player-bucket-1029"
         )
+
+        dynamodb_table = dynamodb.Table.from_table_name(
+            self,
+            "TGL",
+            "TGL")
+
+        dynamodb_table.grant_read_write_data(change_player_event)
 
         ### Update and grant invoke Lambda permission to this lambda ###
         ### from event bridge events ###
