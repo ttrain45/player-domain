@@ -3,8 +3,7 @@ from aws_cdk import (
     aws_iam as iam,
     aws_lambda as _lambda,
     aws_lambda_python_alpha as python,
-    aws_s3 as s3,
-    aws_dynamodb as dynamodb
+    aws_s3 as s3
 )
 from constructs import Construct
 
@@ -28,10 +27,3 @@ class AddPlayerEventStack(Stack):
         ### from event bridge events ###
         principal = iam.ServicePrincipal("events.amazonaws.com")
         add_player_event.grant_invoke(principal)
-
-        dynamodb_table = dynamodb.Table.from_table_name(
-            self,
-            "TGL",
-            "TGL")
-
-        dynamodb_table.grant_read_write_data(add_player_event)
