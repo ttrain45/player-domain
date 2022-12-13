@@ -14,7 +14,7 @@ logger = Logger(service="AddPlayerEvent")
 def handler(event: dict, context: LambdaContext) -> str:
     logger.info({'request': event})
 
-    logger.info({'detail': event.detail})
+    logger.info({'detail': event.request.detail})
     detail_dict = event.detail
     save_player_event_entries = [
         {
