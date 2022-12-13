@@ -2,6 +2,7 @@ from aws_cdk import (
     Stack,
     aws_iam as iam,
     aws_lambda as _lambda,
+    aws_events as events,
     aws_lambda_python_alpha as python,
     aws_s3 as s3
 )
@@ -27,3 +28,10 @@ class AddPlayerEventStack(Stack):
         ### from event bridge events ###
         principal = iam.ServicePrincipal("events.amazonaws.com")
         add_player_event.grant_invoke(principal)
+
+        ### Retrieve Player Event Bus from event bus name ###
+        player_event_bus = events.EventBus.from_event_bus_name(
+            self, "PlayerEventBus", "PlayerEventBus")
+
+        ### Grant Add Player Lambda permissions for Player Event Bus put events ###
+        player_event_bus.grant_put_events_to(add_player_event)
