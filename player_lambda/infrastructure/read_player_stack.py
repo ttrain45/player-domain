@@ -1,5 +1,6 @@
 from aws_cdk import (
     Stack,
+    aws_iam as iam,
     aws_lambda as _lambda,
     aws_lambda_python_alpha as python,
     aws_s3 as s3
@@ -21,13 +22,14 @@ class ReadPlayerStack(Stack):
                                             memory_size=256,
                                             function_name="ReadPlayer"
                                             )
+        ### Update and grant invoke Lambda permission to this lambda ###
+        ### from event bridge events ###
+        principal = iam.ServicePrincipal("apigateway.amazonaws.com")
+        read_player.grant_invoke(principal)
 
-        ### Get PlayerS3BucketData reference ###
-        player_s3_bucket = s3.Bucket.from_bucket_name(
+        dynamodb_table = dynamodb.Table.from_table_name(
             self,
-            "event-driven-exploration-player-bucket-1029",
-            "event-driven-exploration-player-bucket-1029"
-        )
+            "DeployPlayerDynamoDB-PlayerDynamoDBStack-TGL768AF672-I9YBTMG19E08",
+            "DeployPlayerDynamoDB-PlayerDynamoDBStack-TGL768AF672-I9YBTMG19E08")
 
-        ### Add lambda access to s3 bucket ###
-        player_s3_bucket.grant_read(read_player)
+        dynamodb_table.grant_read_data(read_player)
