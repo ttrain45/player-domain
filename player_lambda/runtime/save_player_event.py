@@ -1,11 +1,15 @@
 import json
 import datetime
 import boto3
+import uuid
 
 from aws_lambda_powertools import Logger
 from aws_lambda_powertools.utilities.typing import LambdaContext
 
 logger = Logger(service="SavePlayerEvent")
+
+
+dynamodb = boto3.resource('dynamodb')
 
 
 @logger.inject_lambda_context
