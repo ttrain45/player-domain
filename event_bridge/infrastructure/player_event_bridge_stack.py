@@ -89,3 +89,6 @@ class PlayerEventBridgeStack(Stack):
                 save_player_lambda
             )
         )
+
+        ### Grant Save Player Lambda permissions for Player Event Bus put events ###
+        player_event_bus.grant_put_events_to(save_player_lambda)
