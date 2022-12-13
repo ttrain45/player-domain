@@ -31,7 +31,7 @@ class SavePlayerEventStack(Stack):
 
         dynamodb_table = dynamodb.Table.from_table_name(
             self,
-            "TGL",
-            "TGL")
+            "DeployPlayerDynamoDB-PlayerDynamoDBStack-TGL768AF672-I9YBTMG19E08",
+            "DeployPlayerDynamoDB-PlayerDynamoDBStack-TGL768AF672-I9YBTMG19E08")
 
         dynamodb_table.grant_read_write_data(save_player_event)

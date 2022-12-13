@@ -22,11 +22,13 @@ def handler(event: dict, context: LambdaContext) -> str:
     add_player_event_data_with_defaults = {
         **detail_dict, **add_player_default_add_ons}
 
+    add_player_event_data_with_defaults["eventName"] = "SavePlayer"
+
     save_player_event_entries = [
         {
             'Source': 'addPlayerEvent',
             'DetailType': 'player',
-            'Detail': json.dumps(add_player_default_add_ons),
+            'Detail': json.dumps(add_player_event_data_with_defaults),
             'EventBusName': 'PlayerEventBus'
         },
     ]
