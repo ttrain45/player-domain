@@ -70,6 +70,9 @@ class PlayerEventBridgeStack(Stack):
                 add_player_lambda
             ))
 
+        ### Grant Add Player Lambda permissions for Player Event Bus put events ###
+        player_event_bus.grant_put_events_to(add_player_lambda)
+
         save_player_rule = events.Rule(self, "save-player-rule",
                                        event_bus=player_event_bus,
                                        event_pattern=events.EventPattern(
@@ -89,6 +92,3 @@ class PlayerEventBridgeStack(Stack):
                 save_player_lambda
             )
         )
-
-        ### Grant Save Player Lambda permissions for Player Event Bus put events ###
-        player_event_bus.grant_put_events_to(save_player_lambda)
