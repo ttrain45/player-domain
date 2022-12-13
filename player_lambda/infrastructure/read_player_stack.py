@@ -3,7 +3,7 @@ from aws_cdk import (
     aws_iam as iam,
     aws_lambda as _lambda,
     aws_lambda_python_alpha as python,
-    aws_s3 as s3
+    aws_dynamodb as dynamodb
 )
 from constructs import Construct
 
@@ -26,6 +26,8 @@ class ReadPlayerStack(Stack):
         ### from event bridge events ###
         principal = iam.ServicePrincipal("apigateway.amazonaws.com")
         read_player.grant_invoke(principal)
+
+        read_player.add_function_url()
 
         dynamodb_table = dynamodb.Table.from_table_name(
             self,
