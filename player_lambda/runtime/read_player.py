@@ -43,4 +43,6 @@ def get_todos():
 @logger.inject_lambda_context(correlation_id_path=correlation_paths.API_GATEWAY_HTTP)
 @tracer.capture_lambda_handler
 def handler(event: dict, context: LambdaContext) -> dict:
+    logger.info(context)
+    logger.info(event)
     return app.resolve(event, context)
