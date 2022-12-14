@@ -29,7 +29,7 @@ def handler(event: dict, context: LambdaContext) -> str:
             'Source': 'addPlayerEvent',
             'DetailType': 'player',
             'Detail': json.dumps(add_player_event_data_with_defaults),
-            'EventBusName': 'PlayerEventBus'
+            'EventBusName': 'PlayerDataEventBus'
         },
     ]
 

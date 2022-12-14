@@ -30,8 +30,8 @@ class AddPlayerEventStack(Stack):
         add_player_event.grant_invoke(principal)
 
         ### Retrieve Player Event Bus from event bus name ###
-        player_event_bus = events.EventBus.from_event_bus_name(
-            self, "PlayerEventBus", "PlayerEventBus")
+        player_data_event_bus = events.EventBus.from_event_bus_name(
+            self, "PlayerDataEventBus", "PlayerDataEventBus")
 
-        ### Grant Add Player Lambda permissions for Player Event Bus put events ###
-        player_event_bus.grant_put_events_to(add_player_event)
+        ### Grant Add Player Lambda permissions for Player Data Event Bus put events ###
+        player_data_event_bus.grant_put_events_to(add_player_event)
