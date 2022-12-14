@@ -36,7 +36,7 @@ def get_todos():
 
     logger.info("Testing...")
 
-    return {"testing": "one"}
+    return data
 
 
 # You can continue to use other utilities just as before
