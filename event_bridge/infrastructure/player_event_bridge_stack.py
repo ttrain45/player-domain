@@ -81,7 +81,7 @@ class PlayerEventBridgeStack(Stack):
                                       )
 
         edit_player_lambda = python.PythonFunction.from_function_name(
-            self, "EditPlayerEventHandler", "EditPlayerEventHandler")
+            self, "EditPlayer", "EditPlayer")
 
         edit_player_rule.add_target(
             target.LambdaFunction(
