@@ -27,7 +27,7 @@ class EditPlayerEventStack(Stack):
         ### Update and grant invoke Lambda permission to this lambda ###
         ### from event bridge events ###
         principal = iam.ServicePrincipal("events.amazonaws.com")
-        change_player_event.grant_invoke(principal)
+        edit_player_event.grant_invoke(principal)
 
         ### Get PlayerS3BucketData reference ###
         player_s3_bucket = s3.Bucket.from_bucket_name(
@@ -41,7 +41,7 @@ class EditPlayerEventStack(Stack):
             "TGL",
             "TGL")
 
-        dynamodb_table.grant_read_write_data(change_player_event)
+        dynamodb_table.grant_read_write_data(edit_player_event)
 
         ### Update and grant invoke Lambda permission to this lambda ###
         ### from event bridge events ###
