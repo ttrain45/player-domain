@@ -57,8 +57,3 @@ class PipelineStack(Stack):
             self, "DeployPlayerEventBridge")
         deploy_player_event_bridge_stage = code_pipeline.add_stage(
             deploy_player_event_bridge)
-
-        deploy_player_changed_event = PlayerChangedEventStage(
-            self, "DeployPlayerChangedEvent")
-        deploy_change_player_event_stage = code_pipeline.add_stage(
-            deploy_player_changed_event)
