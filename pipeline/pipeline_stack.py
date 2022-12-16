@@ -23,8 +23,8 @@ class PipelineStack(Stack):
             docker_enabled_for_synth=True,
             synth=pipelines.ShellStep('Synth',
                                       input=pipelines.CodePipelineSource.git_hub(
-                                          'nwoodson-ctech/player-domain',
-                                          'main',
+                                          'ttrain45/player-domain',
+                                          'feature/edit-player',
                                           authentication=SecretValue.secrets_manager(
                                               'exploration-token')
                                       ),
