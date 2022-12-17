@@ -15,13 +15,13 @@ class EditPlayerEventStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         ### Create Edit Player Lambda ###
-        edit_player_event = python.PythonFunction(self, "EditPlayer",
+        edit_player_event = python.PythonFunction(self, "EditPlayerEvent",
                                                     entry="player_lambda/runtime",  # required
                                                     runtime=_lambda.Runtime.PYTHON_3_8,  # required
                                                     index="edit_player_event.py",  # optional, defaults to 'index.py'
                                                     handler="handler",
                                                     memory_size=256,
-                                                    function_name="EditPlayer"
+                                                    function_name="EditPlayerEvent"
                                                     )
 
         ### Update and grant invoke Lambda permission to this lambda ###
