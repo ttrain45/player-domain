@@ -2,6 +2,7 @@ from aws_cdk import (
     Stack,
     aws_iam as iam,
     aws_lambda as _lambda,
+    aws_events as events,
     aws_lambda_python_alpha as python,
     aws_s3 as s3,
     aws_dynamodb as dynamodb
