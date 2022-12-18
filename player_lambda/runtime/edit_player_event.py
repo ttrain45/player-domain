@@ -31,6 +31,6 @@ def handler(event: dict, context: LambdaContext) -> str:
         Entries=edit_player_event_entries
     )
 
-    logging.info(edit_player_response)
+    logger.info(edit_player_response)
 
     logger.info('EditPlayerEvent kicked off from Player EventBridge')
