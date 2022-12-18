@@ -18,7 +18,7 @@ class EditPlayerEventHandlerStack(Stack):
         powertools_layer = python.PythonLayerVersion.from_layer_version_arn(
             self,
             id="lambda-powertools",
-            layer_version_arn=f"arn:aws:lambda:{env.region}:017000801446:layer:AWSLambdaPowertoolsPythonV2:16"
+            layer_version_arn=f"arn:aws:lambda:us-east-1:017000801446:layer:AWSLambdaPowertoolsPythonV2:16"
         )
 
         ### Create Edit Player Lambda ###
