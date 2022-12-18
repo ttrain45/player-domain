@@ -16,6 +16,8 @@ def handler(event: dict, context: LambdaContext) -> str:
 
     edit_player_payload = event.get("detail")
 
+    edit_player_payload["eventName"] = "EditPlayer"
+
     edit_player_event_entries = [
         {
             'Source': 'editPlayerEvent',
