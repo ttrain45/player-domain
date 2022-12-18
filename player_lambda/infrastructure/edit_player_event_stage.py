@@ -5,9 +5,9 @@ from aws_cdk import (
 from player_lambda.infrastructure.edit_player_event_stack import EditPlayerEventStack
 
 
-class EditPlayerEventStage(Stage):
+class EditPlayerEventHandlerStage(Stage):
 
     def __init__(self, scope: Construct, id: str, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        service = EditPlayerEventStack(self, 'EditPlayerEventStack')
+        service = EditPlayerEventHandlerStack(self, 'EditPlayerEventHandlerStack')
