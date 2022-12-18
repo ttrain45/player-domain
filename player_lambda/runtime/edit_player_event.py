@@ -15,7 +15,7 @@ tracer = Tracer(service="EditPlayerEvent")
 @tracer.capture_lambda_handler
 def handler(event: dict, context: LambdaContext) -> str:
     logger.info(event["detail"])
-    tracer.put_annotation(key="EventId", value=charge_id)
+    tracer.put_annotation(key="EventId", value='test value')
 
     edit_player_payload = event.get("detail")
 
