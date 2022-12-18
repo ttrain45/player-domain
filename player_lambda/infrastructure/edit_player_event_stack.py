@@ -15,6 +15,12 @@ class EditPlayerEventHandlerStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
+        powertools_layer = python.PythonLayerVersion.from_layer_version_arn(
+            self,
+            id="lambda-powertools",
+            layer_version_arn=f"arn:aws:lambda:{env.region}:017000801446:layer:AWSLambdaPowertoolsPythonV2:16"
+        )
+
         ### Create Edit Player Lambda ###
         edit_player_event = python.PythonFunction(self, "EditPlayerEventHandler",
                                                     entry="player_lambda/runtime",  # required
@@ -22,7 +28,9 @@ class EditPlayerEventHandlerStack(Stack):
                                                     index="edit_player_event.py",  # optional, defaults to 'index.py'
                                                     handler="handler",
                                                     memory_size=256,
-                                                    function_name="EditPlayerEventHandler"
+                                                    function_name="EditPlayerEventHandler",
+                                                    layers=[powertools_layer],
+                                                    tracing=_lambda.Tracing.ACTIVE
                                                     )
 
         ### Update and grant invoke Lambda permission to this lambda ###

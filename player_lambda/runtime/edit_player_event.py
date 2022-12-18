@@ -2,17 +2,20 @@ import json
 import datetime
 import boto3
 
-from aws_lambda_powertools import Logger
+from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.utilities.typing import LambdaContext
 
 client = boto3.client('events')
 
 logger = Logger(service="EditPlayerEvent")
 
+tracer = Tracer(service="EditPlayerEvent")
 
 @logger.inject_lambda_context
+@tracer.capture_lambda_handler
 def handler(event: dict, context: LambdaContext) -> str:
     logger.info(event["detail"])
+    tracer.put_annotation(key="EventId", value=charge_id)
 
     edit_player_payload = event.get("detail")
 

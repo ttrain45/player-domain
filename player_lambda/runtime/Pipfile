@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-aws-lambda-powertools = "*"
 aws-xray-sdk = "*"
 
 [dev-packages]
