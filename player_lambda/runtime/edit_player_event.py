@@ -19,7 +19,7 @@ def handler(event: dict, context: LambdaContext) -> str:
     edit_player_event_entries = [
         {
             'Source': 'editPlayerEvent',
-            'DetailType': 'edit-player',
+            'DetailType': 'player',
             'Detail': json.dumps(edit_player_payload),
             'EventBusName': 'PlayerDataEventBus'
         },
