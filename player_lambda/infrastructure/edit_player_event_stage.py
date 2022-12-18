@@ -2,7 +2,7 @@ from constructs import Construct
 from aws_cdk import (
     Stage
 )
-from player_lambda.infrastructure.edit_player_event_stack import EditPlayerEventStack
+from player_lambda.infrastructure.edit_player_event_stack import EditPlayerEventHandlerStack
 
 
 class EditPlayerEventHandlerStage(Stage):
