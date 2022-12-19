@@ -91,7 +91,8 @@ class PlayerEventBridgeStack(Stack):
         delete_player_rule = events.Rule(self, "delete-player-event-rule",
                                       event_bus=player_event_bus,
                                       event_pattern=events.EventPattern(
-                                            detail_type=["player", "DELETE"],
+                                            detail_type=["player"],
+                                            detail=["DELETE"]
                                       )
                                       )
 
