@@ -87,3 +87,18 @@ class PlayerEventBridgeStack(Stack):
             target.LambdaFunction(
                 edit_player_lambda
             ))
+
+        delete_player_rule = events.Rule(self, "delete-player-event-rule",
+                                      event_bus=player_event_bus,
+                                      event_pattern=events.EventPattern(
+                                            detail_type=["player", "DELETE"],
+                                      )
+                                      )
+
+        delete_player_lambda = python.PythonFunction.from_function_name(
+            self, "DeletePlayerEventHandler", "DeletePlayerEventHandler")
+
+        delete_player_rule.add_target(
+            target.LambdaFunction(
+                delete_player_lambda
+            ))
