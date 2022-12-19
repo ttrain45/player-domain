@@ -9,6 +9,7 @@ from player_lambda.infrastructure.change_player_event_stage import ChangePlayerE
 from player_lambda.infrastructure.player_changed_event_stage import PlayerChangedEventStage
 from player_lambda.infrastructure.add_player_event_stage import AddPlayerEventStage
 from player_lambda.infrastructure.edit_player_event_stage import EditPlayerEventHandlerStage
+from player_lambda.infrastructure.delete_player_event_stage import DeletePlayerEventHandlerStage
 from event_bridge.infrastructure.player_event_bridge_stage import PlayerEventBridgeStage
 
 
