@@ -24,7 +24,7 @@ class PipelineStack(Stack):
             synth=pipelines.ShellStep('Synth',
                                       input=pipelines.CodePipelineSource.git_hub(
                                           'ttrain45/player-domain',
-                                          'feature/edit-player',
+                                          'feature/delete-player',
                                           authentication=SecretValue.secrets_manager(
                                               'exploration-token')
                                       ),
