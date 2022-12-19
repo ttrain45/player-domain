@@ -92,7 +92,9 @@ class PlayerEventBridgeStack(Stack):
                                       event_bus=player_event_bus,
                                       event_pattern=events.EventPattern(
                                             detail_type=["player"],
-                                            detail=["DELETE"]
+                                            detail={
+                                                "method": ["DELETE"]
+                                            },
                                       )
                                       )
 
