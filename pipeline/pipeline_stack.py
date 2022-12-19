@@ -53,6 +53,11 @@ class PipelineStack(Stack):
         deploy_add_player_event_stage = code_pipeline.add_stage(
             deploy_edit_player_event)
 
+        deploy_delete_player_event = DeletePlayerEventHandlerStage(
+            self, "DeployDeletePlayerEvent")
+        deploy_delete_player_event_stage = code_pipeline.add_stage(
+            deploy_delete_player_event)
+
         deploy_player_event_bridge = PlayerEventBridgeStage(
             self, "DeployPlayerEventBridge")
         deploy_player_event_bridge_stage = code_pipeline.add_stage(
