@@ -6,6 +6,7 @@ from aws_cdk import (
     aws_events as events,
     aws_events_targets as target,
     aws_iam as iam,
+    RemovalPolicy,
     aws_lambda_python_alpha as python
 )
 
