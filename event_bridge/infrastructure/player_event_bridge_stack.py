@@ -30,36 +30,16 @@ class PlayerEventBridgeStack(Stack):
                                  retention=Duration.days(1)
                                  )
 
-        ### Creating Change Player Rule in Infrastructure, not sure if this ###
-        ### should live somewhere else in the package structure ###
-        change_player_rule = events.Rule(self, "change-player-rule",
-                                         event_bus=player_event_bus,
-                                         event_pattern=events.EventPattern(
-                                             detail_type=["player"],
-                                             detail={
-                                                 "eventName": ["ChangePlayerName"]
-                                             },
-                                         )
-                                         )
-
-        ### Get Player Api Lambda previously created ###
-        player_api = python.PythonFunction.from_function_name(
-            self, "ChangePlayerEvent", "ChangePlayerEvent")
-
-        ### Add Player Api Lambda as a target for the change team rule ###
-        change_player_rule.add_target(
-            target.LambdaFunction(
-                player_api
-            ))
-
         add_player_rule = events.Rule(self, "add-player-rule",
                                       event_bus=player_event_bus,
                                       event_pattern=events.EventPattern(
-                                            detail_type=["player"],
+                                            detail_type=["PLAYER"],
                                             detail={
-                                                "eventName": ["AddPlayer"]
+                                                "detail":{
+                                                    "method": ["POST"]
+                                                }
                                             },
-                                      )
+                                        )
                                       )
 
         add_player_lambda = python.PythonFunction.from_function_name(
@@ -73,11 +53,13 @@ class PlayerEventBridgeStack(Stack):
         edit_player_rule = events.Rule(self, "edit-player-event-rule",
                                       event_bus=player_event_bus,
                                       event_pattern=events.EventPattern(
-                                            detail_type=["player"],
+                                            detail_type=["PLAYER"],
                                             detail={
-                                                "eventName": ["EditPlayer"]
+                                                "detail":{
+                                                    "method": ["PATCH"]
+                                                }
                                             },
-                                      )
+                                        )
                                       )
 
         edit_player_lambda = python.PythonFunction.from_function_name(
@@ -91,11 +73,13 @@ class PlayerEventBridgeStack(Stack):
         delete_player_rule = events.Rule(self, "delete-player-event-rule",
                                       event_bus=player_event_bus,
                                       event_pattern=events.EventPattern(
-                                            detail_type=["player"],
+                                            detail_type=["PLAYER"],
                                             detail={
-                                                "method": ["DELETE"]
+                                                "detail":{
+                                                    "method": ["DELETE"]
+                                                }
                                             },
-                                      )
+                                        )
                                       )
 
         delete_player_lambda = python.PythonFunction.from_function_name(

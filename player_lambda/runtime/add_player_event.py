@@ -14,7 +14,7 @@ logger = Logger(service="AddPlayerEvent")
 def handler(event: dict, context: LambdaContext) -> str:
     logger.info(event["detail"])
 
-    detail_dict = event.get("detail")
+    detail_dict = json.loads(event.get("detail", {}).get("body"))
 
     add_player_default_add_ons = {"validated": "true", "status": "active",
                                   "pgatStatus": "active", "injuriedReserve": "false", "eligible": "true"}
@@ -22,12 +22,10 @@ def handler(event: dict, context: LambdaContext) -> str:
     add_player_event_data_with_defaults = {
         **detail_dict, **add_player_default_add_ons}
 
-    add_player_event_data_with_defaults["eventName"] = "SavePlayer"
-
     save_player_event_entries = [
         {
             'Source': 'addPlayerEvent',
-            'DetailType': 'player',
+            'DetailType': 'SavePlayer',
             'Detail': json.dumps(add_player_event_data_with_defaults),
             'EventBusName': 'PlayerDataEventBus'
         },

@@ -17,14 +17,12 @@ def handler(event: dict, context: LambdaContext) -> str:
     logger.info(event["detail"])
     tracer.put_annotation(key="EventId", value='test value')
 
-    edit_player_payload = event.get("detail")
-
-    edit_player_payload["eventName"] = "EditPlayer"
+    edit_player_payload = json.loads(event.get("detail", {}).get("body"))
 
     edit_player_event_entries = [
         {
             'Source': 'editPlayerEvent',
-            'DetailType': 'player',
+            'DetailType': 'EditPlayer',
             'Detail': json.dumps(edit_player_payload),
             'EventBusName': 'PlayerDataEventBus'
         },

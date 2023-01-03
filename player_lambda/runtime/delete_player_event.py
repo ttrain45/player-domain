@@ -19,13 +19,15 @@ def handler(event: dict, context: LambdaContext) -> str:
 
     delete_player_payload = event.get("detail")
 
-    delete_player_payload["eventName"] = "DeletePlayer"
+    player_id = delete_player_payload.get("queryStringParameters", {}).get("player")
 
     delete_player_event_entries = [
         {
             'Source': 'deletePlayerEvent',
-            'DetailType': 'player',
-            'Detail': json.dumps(delete_player_payload),
+            'DetailType': 'DeletePlayer',
+            'Detail': json.dumps({
+                'player_id':player_id
+            }),
             'EventBusName': 'PlayerDataEventBus'
         },
     ]
