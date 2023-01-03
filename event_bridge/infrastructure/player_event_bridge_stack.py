@@ -102,7 +102,7 @@ class PlayerEventBridgeStack(Stack):
         logging_rule = events.Rule(
             self,
             "logging_rule",
-            event_bus=core_event_bus,
+            event_bus=player_event_bus,
             event_pattern={"account": ["284369237500"]}
             )
 
