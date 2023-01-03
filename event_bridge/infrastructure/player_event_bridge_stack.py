@@ -103,7 +103,7 @@ class PlayerEventBridgeStack(Stack):
             self,
             "logging_rule",
             event_bus=player_event_bus,
-            event_pattern={"account": ["284369237500"]}
+            event_pattern={"account": [Stack.of(self).account]}
             )
 
         logging_rule.add_target(target.CloudWatchLogGroup(event_bridge_log_group, max_event_age=Duration.days(1)))
