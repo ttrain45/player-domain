@@ -5,8 +5,6 @@ from aws_cdk import (
     SecretValue
 )
 
-from player_lambda.infrastructure.change_player_event_stage import ChangePlayerEventStage
-from player_lambda.infrastructure.player_changed_event_stage import PlayerChangedEventStage
 from player_lambda.infrastructure.add_player_event_stage import AddPlayerEventStage
 from player_lambda.infrastructure.edit_player_event_stage import EditPlayerEventHandlerStage
 from player_lambda.infrastructure.delete_player_event_stage import DeletePlayerEventHandlerStage
@@ -25,7 +23,7 @@ class PipelineStack(Stack):
             synth=pipelines.ShellStep('Synth',
                                       input=pipelines.CodePipelineSource.git_hub(
                                           'ttrain45/player-domain',
-                                          'feature/delete-player',
+                                          'feature/rest-lambda-integration',
                                           authentication=SecretValue.secrets_manager(
                                               'exploration-token')
                                       ),
@@ -38,11 +36,6 @@ class PipelineStack(Stack):
                                       ]
                                       )
         )
-
-        deploy_change_player_event = ChangePlayerEventStage(
-            self, "DeployChangePlayerEvent")
-        deploy_change_player_event_stage = code_pipeline.add_stage(
-            deploy_change_player_event)
 
         deploy_add_player_event = AddPlayerEventStage(
             self, "DeployAddPlayerEvent")
