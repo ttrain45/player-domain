@@ -37,9 +37,7 @@ class PlayerEventBridgeStack(Stack):
                                       event_pattern=events.EventPattern(
                                             detail_type=["PLAYER"],
                                             detail={
-                                                "detail":{
-                                                    "method": ["POST"]
-                                                }
+                                                "method": ["POST"]
                                             },
                                         )
                                       )
@@ -57,9 +55,7 @@ class PlayerEventBridgeStack(Stack):
                                       event_pattern=events.EventPattern(
                                             detail_type=["PLAYER"],
                                             detail={
-                                                "detail":{
-                                                    "method": ["PATCH"]
-                                                }
+                                                "method": ["PATCH"]
                                             },
                                         )
                                       )
@@ -77,9 +73,7 @@ class PlayerEventBridgeStack(Stack):
                                       event_pattern=events.EventPattern(
                                             detail_type=["PLAYER"],
                                             detail={
-                                                "detail":{
-                                                    "method": ["DELETE"]
-                                                }
+                                                "method": ["DELETE"]
                                             },
                                         )
                                       )
