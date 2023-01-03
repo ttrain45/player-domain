@@ -1,6 +1,7 @@
 from constructs import Construct
 from aws_cdk import (
     Stack,
+    aws_logs as logs,
     Duration,
     aws_events as events,
     aws_events_targets as target,
