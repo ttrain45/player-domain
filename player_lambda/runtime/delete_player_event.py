@@ -17,9 +17,7 @@ def handler(event: dict, context: LambdaContext) -> str:
     logger.info(event["detail"])
     tracer.put_annotation(key="EventId", value='test value')
 
-    delete_player_payload = event.get("detail")
-
-    player_id = delete_player_payload.get("queryStringParameters", {}).get("player")
+    player_id = event.get("queryStringParameters", {}).get("player")
 
     delete_player_event_entries = [
         {
