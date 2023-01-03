@@ -89,3 +89,19 @@ class PlayerEventBridgeStack(Stack):
             target.LambdaFunction(
                 delete_player_lambda
             ))
+
+        event_bridge_log_group = logs.LogGroup(
+            self, 
+            "PlayerEventBridgeLogs",
+            removal_policy=RemovalPolicy.DESTROY,
+            retention=logs.RetentionDays.ONE_DAY
+        )
+
+        logging_rule = events.Rule(
+            self,
+            "logging_rule",
+            event_bus=core_event_bus,
+            event_pattern={"account": ["284369237500"]}
+            )
+
+        logging_rule.add_target(target.CloudWatchLogGroup(event_bridge_log_group, max_event_age=Duration.days(1)))
