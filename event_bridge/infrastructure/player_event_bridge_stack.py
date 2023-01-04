@@ -104,7 +104,7 @@ class PlayerEventBridgeStack(Stack):
         logging_rule.add_target(target.CloudWatchLogGroup(event_bridge_log_group, max_event_age=Duration.days(1)))
 
         core_event_bus = events.EventBus.from_event_bus_arn(self,
-                                               "player-event-bus",
+                                               "core-event-bus",
                                                "arn:aws:events:us-east-1:{}:event-bus/CoreEventBus".format(os.getenv(
                                                    'CDK_DEFAULT_ACCOUNT')))
 
