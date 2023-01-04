@@ -1,3 +1,4 @@
+import os
 from constructs import Construct
 from aws_cdk import (
     Stack,
@@ -114,8 +115,5 @@ class PlayerEventBridgeStack(Stack):
                                              detail_type=["TESTDOMAIN"],
                                         )
                                       )
-
-        delete_player_lambda = python.PythonFunction.from_function_name(
-            self, "DeletePlayerEventHandler", "DeletePlayerEventHandler")
 
         cross_app_rule.add_target(target.CloudWatchLogGroup(event_bridge_log_group, max_event_age=Duration.days(1)))
