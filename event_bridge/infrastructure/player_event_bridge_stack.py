@@ -101,3 +101,21 @@ class PlayerEventBridgeStack(Stack):
             )
 
         logging_rule.add_target(target.CloudWatchLogGroup(event_bridge_log_group, max_event_age=Duration.days(1)))
+
+        core_event_bus = events.EventBus.from_event_bus_arn(self,
+                                               "player-event-bus",
+                                               "arn:aws:events:us-east-1:{}:event-bus/CoreEventBus".format(os.getenv(
+                                                   'CDK_DEFAULT_ACCOUNT')))
+
+        cross_app_rule = events.Rule(self, "delete-player-event-rule",
+                                      event_bus=core_event_bus,
+                                      event_pattern=events.EventPattern(
+                                             source=["ingest-api"],
+                                             detail_type=["TESTDOMAIN"],
+                                        )
+                                      )
+
+        delete_player_lambda = python.PythonFunction.from_function_name(
+            self, "DeletePlayerEventHandler", "DeletePlayerEventHandler")
+
+        cross_app_rule.add_target(target.CloudWatchLogGroup(event_bridge_log_group, max_event_age=Duration.days(1)))
