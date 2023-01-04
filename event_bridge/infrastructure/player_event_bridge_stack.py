@@ -108,7 +108,7 @@ class PlayerEventBridgeStack(Stack):
                                                "arn:aws:events:us-east-1:{}:event-bus/CoreEventBus".format(os.getenv(
                                                    'CDK_DEFAULT_ACCOUNT')))
 
-        cross_app_rule = events.Rule(self, "delete-player-event-rule",
+        cross_app_rule = events.Rule(self, "cross-app-rule",
                                       event_bus=core_event_bus,
                                       event_pattern=events.EventPattern(
                                              source=["ingest-api"],
